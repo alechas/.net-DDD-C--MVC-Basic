@@ -173,21 +173,6 @@ namespace PHD.MVC.Controllers
         }
 
 
-        public ActionResult Autocompleteaddress(string term)
-        {
-            ArrayList arraylist = new ArrayList();
-           
-            List<ICriterion> Crit = new List<ICriterion>();
-            Crit.Add(Restrictions.Eq("name", term));
-            int total;
-            IEnumerable<Street> streets = new StreetService().FindAllByCriteria(Crit,out total,0,10,"id","asc");
-
-            foreach (var row in streets)
-            {
-                arraylist.Add(row.name);
-            }
-            var filteredItems = arraylist.ToArray();
-            return Json(filteredItems, JsonRequestBehavior.AllowGet);
-        }
+      
     }
 }

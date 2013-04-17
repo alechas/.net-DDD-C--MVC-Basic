@@ -69,19 +69,8 @@
   <ItemGroup>
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CheckAreaController.cs" />
-    <Compile Include="Controllers\FAQController.cs" />
-    <Compile Include="Controllers\HangoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
-    <Compile Include="Controllers\PaddictController.cs" />
-    <Compile Include="Controllers\PaymentController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\TrackOrderController.cs" />
-    <Compile Include="Controllers\TransactionController.cs" />
-    <Compile Include="Controllers\WhatsHotController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1222,10 +1211,6 @@
     <Content Include="Views\About\Outlet.aspx" />
     <Content Include="Views\About\QuickApply.aspx" />
     <Content Include="Views\About\Survey.aspx" />
-    <Content Include="Views\Admin\Index.aspx" />
-    <Content Include="Views\CheckArea\Index.aspx" />
-    <Content Include="Views\FAQ\Index.aspx" />
-    <Content Include="Views\Hangout\Index.aspx" />
     <Content Include="Views\Home\Landing.aspx" />
     <Content Include="Views\Home\Login.aspx" />
     <Content Include="Views\Home\Notifikasi.aspx" />
@@ -1234,29 +1219,8 @@
     <Content Include="Views\Home\RegisterSuccess.aspx" />
     <Content Include="Views\Home\SelectAddress.aspx" />
     <Content Include="Views\Home\test.aspx" />
-    <Content Include="Views\Menu\DoubleDetail.aspx" />
-    <Content Include="Views\Menu\DoublePizza.aspx" />
-    <Content Include="Views\Menu\Favorite.aspx" />
-    <Content Include="Views\Menu\Hemat.aspx" />
-    <Content Include="Views\Menu\HematUpgrade.aspx" />
-    <Content Include="Views\Menu\HotMenu.aspx" />
-    <Content Include="Views\Menu\Index.aspx" />
-    <Content Include="Views\Menu\MenuUtama.aspx" />
-    <Content Include="Views\Menu\PickBox.aspx" />
-    <Content Include="Views\Menu\Promo.aspx" />
-    <Content Include="Views\Menu\PromoDetail.aspx" />
-    <Content Include="Views\Paddict\Index.aspx" />
-    <Content Include="Views\Paddict\OrderHistory.aspx" />
-    <Content Include="Views\Paddict\Point.aspx" />
-    <Content Include="Views\Payment\Index.aspx" />
     <Content Include="Views\Test\Index.aspx" />
     <Content Include="Views\Test\Test.aspx" />
-    <Content Include="Views\TrackOrder\Empty.aspx" />
-    <Content Include="Views\TrackOrder\Index.aspx" />
-    <Content Include="Views\Transaction\Infinitium.aspx" />
-    <Content Include="Views\Transaction\InfitiumResult.aspx" />
-    <Content Include="Views\Transaction\Mandiri.aspx" />
-    <Content Include="Views\WhatsHot\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1316,11 +1280,11 @@
     <Folder Include="Content\tinymce\jscripts\tiny_mce\plugins\spellchecker\includes\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PHD.Service\Service.csproj">
+    <ProjectReference Include="..\Service\Service.csproj">
       <Project>{6DEEF9BB-5FF6-4076-8D15-7C60976393EA}</Project>
       <Name>Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PHD.Session\Session.csproj">
+    <ProjectReference Include="..\Session\Session.csproj">
       <Project>{B477D2F0-33B6-4297-B764-26D9FC2D42B5}</Project>
       <Name>Session</Name>
     </ProjectReference>

@@ -27,10 +27,10 @@ namespace PHD.Session.Mappings
             Map(x => x.jenis_kelamin).Nullable();
 
             // Map(x => x.profesi).Nullable();
-            References<Profesi>(x => x.prof).Column("profesi");
+         
 
             //Map(x => x.hobi).Nullable();
-            References<Hobi>(x => x.hobirel).Column("hobi");
+
 
 
             Map(x => x.fav_hangout).Nullable();
@@ -44,7 +44,6 @@ namespace PHD.Session.Mappings
             Map(x => x.first_time_logged).Nullable();
 
             References<Role>(x => x.role).Column("id_role");
-            HasMany<Address>(x => x.Addresses).KeyColumn("id_user"); 
         }
     }
 }

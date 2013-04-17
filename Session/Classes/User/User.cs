@@ -22,10 +22,9 @@ namespace PHD.Session.Classes
         public virtual string jenis_kelamin { get; set; }
         
         public virtual string profesi { get; set; }
-        public virtual Profesi prof { get; set; }
-        
+      
         public virtual string hobi { get; set; }
-        public virtual Hobi hobirel { get; set; }
+      
         
         public virtual string fav_hangout { get; set; }
         public virtual string fav_makanan { get; set; }
@@ -39,7 +38,7 @@ namespace PHD.Session.Classes
         public virtual int id_role { get; set; }
 
         public virtual Role role { get; set; }
-        public virtual IList<Address> Addresses {get;set;}
+      
         public virtual void Bersih()
         {
             this.nama = String.IsNullOrEmpty(this.nama) ? " " : this.nama;

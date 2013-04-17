@@ -12,31 +12,10 @@ namespace PHD.MVC.Helper
     public class Dropdown
     {
 
-        public List<Object> TypeAddress()
-        {
-            List<Object> list = new List<Object>();
-            TypeaddressService serv = new TypeaddressService();
-            IEnumerable<Typeaddress> data = serv.FindAll();
-            list.Add(new { value = "-1", text = "silahkan pilih" });
-            foreach (var row in data)
-            {
-                list.Add(new { value = row.Id, text = row.name });
-            }
-            return list;
-        }
+     
 
 
-        public List<Object> TypeAddressAdmin()
-        {
-            List<Object> list = new List<Object>();
-            TypeaddressService serv = new TypeaddressService();
-            IEnumerable<Typeaddress> data = serv.FindAll();
-            foreach (var row in data)
-            {
-                list.Add(new { value = row.Id, text = row.name });
-            }
-            return list;
-        }
+      
 
         public List<Object> IsMainAddress()
         {
@@ -49,21 +28,7 @@ namespace PHD.MVC.Helper
         }
 
 
-        public List<Object> getUserAddress(string name)
-        {
-            User model = new userHelper().GetUser(name);
-            List<Object> list = new List<Object>();
-            List<ICriterion> Crit = new List<ICriterion>();
-            Crit.Add(Restrictions.Eq("user.Id", model.Id));
-            Crit.Add(Restrictions.Eq("status", 1));
-            int total;
-            IEnumerable<Address> address = new AddressService().FindAllByCriteria(Crit, out total, 0, 10, "id", "asc");
-            foreach (var row in address)
-            {
-                list.Add(new { value = row.Id, text = row.street.name });
-            }
-            return list;
-        }
+     
 
         public List<Object> Role()
         {
@@ -118,60 +83,11 @@ namespace PHD.MVC.Helper
         }
 
 
-        public List<Object> TypeStatic()
-        {
-            List<Object> list = new List<Object>();
-            TypestaticService servrole = new TypestaticService();
-            IEnumerable<Typestatic> data = servrole.FindAll();
-            foreach (var row in data)
-            {
-                list.Add(new { value = row.Id, text = row.name });
-            }
-            return list;
-        }
+       
+      
 
-        public List<Object> GetMenu()
-        {
-            List<Object> list = new List<Object>();
-            IEnumerable<Menu> data = new MenuService().FindAll();
-            list.Add(new { value = "", text = "----------" });
+      
 
-            foreach (var row in data)
-            {
-                list.Add(new { value = row.Id, text = row.title });
-            }
-            return list;
-        }
-
-        public List<Object> GetTypeSubMenu()
-        {
-            List<Object> list = new List<Object>();
-            IEnumerable<Typesubmenu> data = new TypesubmenuService().FindAll();
-
-            foreach (var row in data)
-            {
-                list.Add(new { value = row.Id, text = row.name });
-            }
-            return list;
-        }
-
-        public List<Object> GetSubmenu()
-        {
-            List<Object> list = new List<Object>();
-            List<ICriterion> Crit = new List<ICriterion>();
-
-            Crit.Add(Restrictions.Eq("status", 1));
-            int total;
-            IEnumerable<Submenu> submenu = new SubmenuService().FindAllByCriteria(Crit, out total, 0, 6, "Id", "ASC");
-
-            list.Add(new { value = "", text = "----------" });
-
-            foreach (var row in submenu)
-            {
-                list.Add(new { value = row.Id, text = row.name });
-            }
-            return list;
-        }
-
+       
     }
 }
