@@ -1,0 +1,123 @@
+/* Default MovingBoxes wrapper size */
+#movingboxes {
+	width: 900px;
+	min-height: 300px;
+}
+
+/* Default MovingBoxes panel size */
+#movingboxes > li {
+	width: 300px;
+}
+
+/*** Overall MovingBoxes Slider ***/
+.mb-wrapper { 
+	margin: 0 auto;
+	position: relative;
+	left: 0;
+	top: 0;  
+	height:190px;
+}
+
+/* Panel Wrapper */
+.mb-slider, .mb-scroll {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+	left: 0;
+	top: 0;
+
+	/***(>'-')> Control Panel Font size here <('-'<)***/
+	font-size: 12px;
+	font-family:arial;
+	color:#d70000;
+	font-style:italic;
+}
+
+/* active slider border highlight */
+.mb-active-slider {
+	border-color: #999bff;
+}
+
+/*** Slider panel ***/
+.mb-slider .mb-panel {
+	margin: 0;
+	padding: 0 5px;
+	display: block;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+	opacity:0.6; 
+}
+
+/* Cursor to arrow over current panel, pointer for all others,
+change .current class name using plugin option, currentPanel : 'current' */
+.mb-slider .mb-panel.current {
+	cursor: auto;
+	opacity:1;
+}
+
+/*** Inside the panel ***/
+.mb-inside {
+	padding: 0 10px; 
+}
+
+.mb-inside * {
+	max-width: 100%;
+}
+
+/*** Left & Right Navigation Arrows ***/
+a.mb-scrollButtons {
+	display: block;
+	width: 45px;
+	height: 58px; 
+	position: absolute;
+	top: 40%;
+	margin-top: -25px; /* if you change the arrow images, you may have to adjust this (1/2 height of arrow image) */
+	cursor: pointer;
+	text-decoration: none;
+	outline: 0;
+	border: 0;
+}
+a.mb-scrollButtons.mb-left { 
+	background:url(../img/arrowleft.png) ;
+	width:42px;
+	height:87px;
+	left: -45px;
+}
+a.mb-scrollButtons.mb-right {
+	background:url(../img/arrowright.png) ;
+	width:42px;
+	height:87px;	
+	right: -45px;
+} 
+a.mb-scrollButtons.disabled {
+	display: none;
+}
+
+/*** Controls added below the panels ***/
+.mb-controls {
+	margin: 0 auto;
+	text-align: center; 
+	position: relative;
+	z-index: 100;
+}
+.mb-controls a {
+	color: #444;
+	font: 12px Georgia, Serif;
+	display: inline-block;
+	text-decoration: none;
+	padding: 2px;
+	height: 18px;
+	margin: 0 5px 0 0;
+	text-align: center;
+	outline: 0;
+}
+.mb-controls a.current, .mb-controls a:hover {
+	color: #fff;
+}
+.mb-active-slider .mb-controls { 
+
+} 

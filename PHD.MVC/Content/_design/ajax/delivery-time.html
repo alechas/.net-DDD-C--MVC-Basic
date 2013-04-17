@@ -1,0 +1,68 @@
+<div class="popup-delivery-time">
+
+	<p>
+		Silahkan pilih waktu delivery yang anda inginkan
+	</p>
+
+	<form>
+		<table>
+			<tr>
+				<td>
+					Tanggal
+				</td>
+				<td>
+					<input type="text" class="date" id="date">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Pukul
+				</td>
+				<td>
+						<select class="hour">
+							<option disabled>Jam</option>
+						</select>
+						&nbsp; &nbsp;
+					    <select class="minute">
+					    	<option disabled>Menit</option>
+					    </select>
+				</td>
+			</tr>
+		</table>
+
+		<p>
+			<input type="button" class="redbtn cancel-button" value="Cancel"> <input type="submit" class="greenbtn" value="Lanjut">
+		</p>
+	</form>
+
+	<script type="text/javascript">
+
+		
+
+		$('.popup-delivery-time .cancel-button').click(function(){
+			parent.$.fancybox.close();
+		});
+
+		$('.popup-delivery-time #date').datepicker();
+
+		var text="";
+	
+		for (var i=0;i<=23;i++)
+		{ 	
+			text = $(".popup-delivery-time .hour").html();
+			
+			$(".popup-delivery-time .hour").html( text + "<option>" + i + "</option>");
+		}
+		
+
+		text="";
+		for (var i=0;i<60;i++)
+		{ 	
+			text= $(".popup-delivery-time .minute").html();
+			
+			$(".popup-delivery-time .minute").html(text+"<option>"+i+"</option>");
+		}
+		
+	</script>
+
+</div>

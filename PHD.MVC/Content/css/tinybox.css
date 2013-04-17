@@ -1,0 +1,15 @@
+
+#testdiv {width:1000px; margin:0 auto; padding:0; background:transparent}
+.tbox {position:absolute; display:none; padding:0; z-index:900}
+.tinner {padding:0; -moz-border-radius:5px; border-radius:5px; background:url(../img/loading.gif) no-repeat 50% 50% transparent;border:0}
+.tmask {position:absolute; display:none; top:0; left:0; height:100%; width:100%; background:#000; z-index:800}
+.tclose {position:absolute; top:-5px; right:0; width:43px; height:43px; cursor:pointer; background:url(../img/close.png) no-repeat}
+.tclose:hover {background-position:0 -43px}
+
+#error {background:#ff6969; color:#fff; padding:0}
+#error .tcontent {padding:0; border:0}
+#success {background:transparent; color:#fff; padding:0}
+#blackmask {background:#000}
+#frameless {padding:0}
+#frameless .tclose {right:6px}
+

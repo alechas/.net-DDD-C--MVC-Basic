@@ -1,0 +1,69 @@
+
+/************** Skin 2 *********************/
+.dd2 {
+	text-align:left;
+	background-color:#fff;
+	font-size:12px;
+	float:left;
+}
+.dd2 .ddTitle {
+	padding:0 3px;
+	text-indent:0;
+	cursor:default;
+	overflow:hidden;
+	height:45px;
+	line-height:50px;
+	background:#fff;
+	border:1px solid #333; -moz-border-radius: 13px; border-radius: 13px;
+}
+.dd2 .ddTitle span.arrow {
+	background:transparent url(../img/dropdown.png) no-repeat 0 0; float:right; display:inline-block;width:54px; height:40px; cursor:pointer; top:3px; position:relative; right:2px;
+}
+
+.dd2 .ddTitle span.ddTitleText {text-indent:25px; padding-left:5px; overflow:hidden; line-height:20px; font-family:Helvetica,arial; font-size:20px; color:#888}
+.dd2 .ddTitle span.ddTitleText img{text-align:left; padding-left:5px}
+.dd2 .ddTitle img.selected {
+	padding:0 2px 0 0;
+	vertical-align:top;
+}
+.dd2 .ddChild {
+	position:absolute;
+	border:1px solid #c3c3c3;
+	border-top:none;
+	display:none;
+	margin:0;
+	width:auto;
+	overflow:auto;
+	overflow-x:hidden !important;
+	background-color:#ffffff;
+	font-size:14px;
+}
+.dd2 .ddChild .opta a, .dd2 .ddChild .opta a:visited {padding-left:10px;}
+.dd2 .ddChild a {
+	font-family:Helvetica,arial;
+	display:block;
+	padding:0 0 0 13px;
+	margin:5px;
+	height:25px;
+	line-height:25px;
+	text-decoration:none;
+	color:#444;
+	font-size:16px;
+	font-weight:600;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+	-moz-border-radius: 20px; 
+	border-radius: 20px
+}
+.dd2 .ddChild a:hover ,.dd2 .ddChild a.selected{
+	color:#fff;
+	line-height:25px;
+	background-color:#aaa
+}
+.dd2 .ddChild a img {
+	border:0;
+	padding:0 2px 0 0;
+	vertical-align:middle
+}
+ 

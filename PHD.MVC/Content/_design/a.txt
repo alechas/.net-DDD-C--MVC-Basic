@@ -1,0 +1,39 @@
+function setvalue(id, index, idelement) {
+            document.getElementById(idelement);
+            var value = id;
+            var tagidelement = "#" + idelement;
+            $(tagidelement).val(value);
+        }
+		
+		
+	function setvalue(id, index, idelement) {
+            alert(idelement);
+            var tagidelement = '#' + idelement;
+            $(tagidelement).val(id);
+            var usa = document.getElementById('modifier[0]');
+            alert(tagidelement);
+            var value = id;
+        }
+		
+   function setvalue(id, index, idelement) {
+            var radioObj = document.getElementById(idelement);
+            var newValue = id;
+            alert(radioObj);
+            alert('asu1');
+            if (!radioObj)
+                alert('asu2');
+                return;
+            var radioLength = radioObj.length;
+            if (radioLength == undefined) {
+                alert('asu3');
+                radioObj.checked = (radioObj.value == newValue.toString());
+                return;
+            }
+            for (var i = 0; i < radioLength; i++) {
+                alert('asu4');
+                radioObj[i].checked = false;
+                if (radioObj[i].value == newValue.toString()) {
+                    radioObj[i].checked = true;
+                }
+            }
+        }

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B477D2F0-33B6-4297-B764-26D9FC2D42B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHD.Session</RootNamespace>
+    <AssemblyName>PHD.Session</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\Library\fluentNHibernate\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Library\fluentNHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\Library\fluentNHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Classes\Address\Address.cs" />
+    <Compile Include="Classes\Area\Area.cs" />
+    <Compile Include="Classes\Box\Box.cs" />
+    <Compile Include="Classes\Hobi\Hobi.cs" />
+    <Compile Include="Classes\Profesi\Profesi.cs" />
+    <Compile Include="Classes\Upgradepasta\Upgradepasta.cs" />
+    <Compile Include="Classes\City\City.cs" />
+    <Compile Include="Classes\Configs\Configs.cs" />
+    <Compile Include="Classes\Data\Data.cs" />
+    <Compile Include="Classes\Emptymenu\Emptymenu.cs" />
+    <Compile Include="Classes\Event\Event.cs" />
+    <Compile Include="Classes\Faq\Faq.cs" />
+    <Compile Include="Classes\Images\Image.cs" />
+    <Compile Include="Classes\Menu\Menu.cs" />
+    <Compile Include="Classes\Modifier\Modifier.cs" />
+    <Compile Include="Classes\Orderdt\Orderdt.cs" />
+    <Compile Include="Classes\Orderhd\Orderhd.cs" />
+    <Compile Include="Classes\Ordersubmenu\Ordersubmenu.cs" />
+    <Compile Include="Classes\Order\Ordercust.cs" />
+    <Compile Include="Classes\Outlet\Outlet.cs" />
+    <Compile Include="Classes\Payment\Payment.cs" />
+    <Compile Include="Classes\Prizegroup\Prizegroup.cs" />
+    <Compile Include="Classes\Reedem\Reedem.cs" />
+    <Compile Include="Classes\Role\Role.cs" />
+    <Compile Include="Classes\Saran\Saran.cs" />
+    <Compile Include="Classes\Sitemenu\Sitemenu.cs" />
+    <Compile Include="Classes\Static\Static.cs" />
+    <Compile Include="Classes\Statusorder\Statusorder.cs" />
+    <Compile Include="Classes\Street\Street.cs" />
+    <Compile Include="Classes\Submenu\Submenu.cs" />
+    <Compile Include="Classes\Typeaddress\Typeaddress.cs" />
+    <Compile Include="Classes\Typemenu\Typemenu.cs" />
+    <Compile Include="Classes\Typestatic\Typestatic.cs" />
+    <Compile Include="Classes\Typesubmenu\Typesubmenu.cs" />
+    <Compile Include="Classes\Upgrade\Upgrade.cs" />
+    <Compile Include="Classes\Userreedem\Userreedem.cs" />
+    <Compile Include="Classes\User\User.cs" />
+    <Compile Include="Classes\Voucher\Voucher.cs" />
+    <Compile Include="Domain\EntityBase.cs" />
+    <Compile Include="Domain\EntityBaseMap.cs" />
+    <Compile Include="Domain\IAggregateRoot.cs" />
+    <Compile Include="Mappings\AddressMap.cs" />
+    <Compile Include="Mappings\AreaMap.cs" />
+    <Compile Include="Mappings\BoxMap.cs" />
+    <Compile Include="Mappings\HobiMap.cs" />
+    <Compile Include="Mappings\ProfesiMap.cs" />
+    <Compile Include="Mappings\UpgradepastaMap.cs" />
+    <Compile Include="Mappings\CityMap.cs" />
+    <Compile Include="Mappings\ConfigsMap.cs" />
+    <Compile Include="Mappings\DataMap.cs" />
+    <Compile Include="Mappings\EmptymenuMap.cs" />
+    <Compile Include="Mappings\EventMap.cs" />
+    <Compile Include="Mappings\FaqMap.cs" />
+    <Compile Include="Mappings\ImageMap.cs" />
+    <Compile Include="Mappings\MenuMap.cs" />
+    <Compile Include="Mappings\ModifierMap.cs" />
+    <Compile Include="Mappings\OrdercustMap.cs" />
+    <Compile Include="Mappings\OrderdtMap.cs" />
+    <Compile Include="Mappings\OrderhdMap.cs" />
+    <Compile Include="Mappings\OrdersubmenuMap.cs" />
+    <Compile Include="Mappings\OutletMap.cs" />
+    <Compile Include="Mappings\PaymentMap.cs" />
+    <Compile Include="Mappings\PrizegroupMap.cs" />
+    <Compile Include="Mappings\ReedemMap.cs" />
+    <Compile Include="Mappings\RoleMap.cs" />
+    <Compile Include="Mappings\SaranMap.cs" />
+    <Compile Include="Mappings\SitemenuMap.cs" />
+    <Compile Include="Mappings\StaticMap.cs" />
+    <Compile Include="Mappings\StatusorderMap.cs" />
+    <Compile Include="Mappings\StreetMap.cs" />
+    <Compile Include="Mappings\SubmenuMap.cs" />
+    <Compile Include="Mappings\TypeaddressMap.cs" />
+    <Compile Include="Mappings\TypemenuMap.cs" />
+    <Compile Include="Mappings\TypestaticMap.cs" />
+    <Compile Include="Mappings\TypesubmenuMap.cs" />
+    <Compile Include="Mappings\UpgradeMap.cs" />
+    <Compile Include="Mappings\UserMap.cs" />
+    <Compile Include="Mappings\UserreedemMap.cs" />
+    <Compile Include="Mappings\VoucherMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionStorage\HttpSessionContainer.cs" />
+    <Compile Include="SessionStorage\ISessionStorageContainer.cs" />
+    <Compile Include="SessionStorage\NHibernateSessionModule.cs" />
+    <Compile Include="SessionStorage\SessionFactory.cs" />
+    <Compile Include="SessionStorage\SessionStorageFactory.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

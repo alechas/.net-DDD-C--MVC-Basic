@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="<%: Url.Content("~/Scripts/jquery-1.4.4.min.js") %>" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="page">
+
+        <div id="header">
+            <div id="title">
+                <h1>PHD ADMIN</h1>
+            </div>
+              
+            <div id="logindisplay">
+                <% Html.RenderPartial("LogOnUserControl"); %>
+            </div> 
+            
+            <div id="menucontainer">
+                <ul id="menu">              
+                    <li><%: Html.ActionLink("City", "index", "AdminCity")%></li>
+                    <li><%: Html.ActionLink("Faq", "index", "AdminFaq")%></li>
+                    <li><%: Html.ActionLink("Menu", "index", "AdminMenu")%></li>
+                    <li><%: Html.ActionLink("Outlet", "index", "AdminOutlet")%></li>
+                    <li><%: Html.ActionLink("Payment", "index", "AdminPayment")%></li>
+                    <li><%: Html.ActionLink("SiteMenu", "index", "AdminSiteMenu")%></li>
+                    <li><%: Html.ActionLink("Static", "index", "AdminStatic")%></li>
+                    <li><%: Html.ActionLink("Street", "index", "AdminStreet")%></li>
+                    <li><%: Html.ActionLink("Submenu", "index", "AdminSubmenu")%></li>
+                    <li><%: Html.ActionLink("User", "index", "AdminUser")%></li>
+                </ul>
+              
+            
+            </div>
+        </div>
+
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

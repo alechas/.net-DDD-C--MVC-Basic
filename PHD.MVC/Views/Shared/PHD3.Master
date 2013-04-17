@@ -1,0 +1,769 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="PHD.MVC.Helper" %>
+<%@ Import Namespace="PHD.MVC.Models" %>
+<%@ Import Namespace="PHD.Service.ModelService" %>
+<%@ Import Namespace="PHD.Session.Classes" %>
+<%@ Import Namespace="NHibernate.Criterion" %>
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head id="Head1" runat="server">
+	<title>PHD - Ahlinya Delivery</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="<%:Url.Content("~/Content/favicon/logo.png")%>" />
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="<%:Url.Content("~/Content/_design/css/main.css")%>">
+    <link rel="stylesheet" href="<%:Url.Content("~/Content/_design/css/movingboxes.css")%>">
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <script>  window.jQuery || document.write('<script src="<%:Url.Content("~/Content/_design/js/libs/jquery-1.8.3.min.js") %>"><\/script>')</script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.cycle.all.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.easing.1.2.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.movingboxes.min.js") %>"></script>
+    <script type="text/javascript" src="<%:Url.Content("~/Content/_design/js/plugins/jquery-ui-1.9.2.custom.min.js") %>"></script>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChFWZLbOsjriJmq7sxU9JSWSduSdOGC6Q&sensor=true">
+    </script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.fancybox.pack.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.dd.js") %>"></script>
+      <script type="text/javascript" src="<%:Url.Content("~/Content/js/timepicker/jquery.timepicker.js") %>"></script>
+  
+  <link rel="stylesheet" type="text/css" href="<%:Url.Content("~/Content/js/timepicker/jquery.timepicker.css")%>" />
+  <script type="text/javascript" src="<%:Url.Content("~/Content/js/timepicker/lib/base.js")%>"></script> 
+<link rel="stylesheet" type="text/css" href="<%:Url.Content("~/Content/js/timepicker/lib/base.css")%>" /> 
+<script type="text/javascript">
+    function submitBasket()
+    {
+            if (window.confirm('Apakah anda yakin ingin men-submit transaksi ini')) {
+                $('#bon').submit();
+            }
+    }
+
+    function cancelBayar()
+    {
+        $('input[name=payment-type]').attr('checked',false);
+        $('input[name=payment-child]').attr('checked',false);
+    }
+
+    function checkBasket() 
+    { 
+        var nilai = "t";
+        var result ="";
+        var payment = "";
+        var checkpayment = $('input:radio[name=payment-type]:checked').length > 0;
+        var checkchild = $('input:radio[name=payment-child]:checked').length > 0;
+        if(checkpayment)
+        {
+            payment = $('input:radio[name=payment-type]:checked').val();
+            if(checkchild)
+            {
+                payment = $('input:radio[name=payment-type]:checked').val();
+            }
+        }
+
+        var codvalue = $("#codvalue").val();
+        jamval = $("#Time").val(); 
+        harival = $("#Date").val(); 
+        total = $("#valtotal").val();
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            url: '<%:Url.Content("~/Home/CheckBasket") %>',
+            data: {
+                jam: jamval,
+                date: harival,
+                payment: payment,
+                total: total
+            },
+            success: function (data) {
+                result = data.result;
+                if (result == "1") {
+                    document.getElementById("notif1").click();
+                    return false;
+                }
+                if (result == "2") {
+                    document.getElementById("notif2").click();
+                    return false;
+                }
+                if (result == "3") {
+                    document.getElementById("notif3").click();
+                    return false;
+                }
+                if (result == "4") {
+                    document.getElementById("notif4").click();
+                    return false;
+                }
+                if (result == "5") {
+                    document.getElementById("notif5").click();
+                    return false;
+                }
+                if (result == "6") {
+                    document.getElementById("notif6").click();
+                    return false;
+                }
+                if (payment == "1" && (codvalue < total)) {
+
+                    document.getElementById("notif8").click();
+                    return false;
+                }
+
+                var atLeastOneIsChecked = $('input:radio[name=payment-type]:checked').length > 0;
+                if (!atLeastOneIsChecked) {
+                    alert('Please at least select one type of payment');
+                    return false;
+                }
+
+                $("#id_outlet").val(data.id_outlet);
+
+                submitBasket();
+            }
+        })     
+    }
+
+    function changeQty(id,val) 
+    {
+        var payment = "";
+        var checkpayment = $('input:radio[name=payment-type]:checked').length > 0;
+        var checkchild = $('input:radio[name=payment-child]:checked').length > 0;
+        if(checkpayment)
+        {
+            payment = $('input:radio[name=payment-type]:checked').val();
+            if(checkchild)
+            {
+                payment = $('input:radio[name=payment-child]:checked').val();
+            }
+        }
+
+        if(val!= 0 && val!="")
+        {
+            $.ajax({
+				        type : 'POST',
+				        dataType : 'json',
+				        cache : false,
+				        url : '<%:Url.Content("~/Menu/Changeqty") %>',
+				        data : {
+				            id: id,
+                            qty : val,
+                            idpayment : payment
+				        },
+				            success : function(data){
+                            $("#lblprice"+id).text(data.itemprice);
+                            $("#lbltotal").text(data.totaltext);
+                            $("#lblprice").text(data.pricetext);
+                            $("#lbldelivery").text(data.deliverytext);
+                            $("#lbltax").text(data.taxtext);
+                            $("#lbldiskon").text(data.diskontext);
+
+                            $("#valtotal").val(data.total);
+                            $("#valprice").val(data.price);
+                            $("#valdelivery").val(data.delivery);
+                            $("#valtax").val(data.tax);
+                            $("#valdiskon").val(data.diskon);
+				        }
+			        })     
+        }
+    }
+
+    function changeVoucherVal(val) {
+        var payment = "";
+        var checkpayment = $('input:radio[name=payment-type]:checked').length > 0;
+        var checkchild = $('input:radio[name=payment-child]:checked').length > 0;
+        if (checkpayment) {
+            payment = $('input:radio[name=payment-type]:checked').val();
+            if (checkchild) {
+                payment = $('input:radio[name=payment-child]:checked').val();
+            }
+        }
+
+        if (val != 0 && val != "" && payment==5) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                url: '<%:Url.Content("~/Menu/ChangeVoucher") %>',
+                data: {
+                    val: val,
+                    idpayment: payment
+                },
+                success: function (data) {
+                    $("#lbltotal").text(data.totaltext);
+                    $("#lblprice").text(data.pricetext);
+                    $("#lbldelivery").text(data.deliverytext);
+                    $("#lbltax").text(data.taxtext);
+                    $("#lbldiskon").text(data.diskontext);
+
+                    $("#valtotal").val(data.total);
+                    $("#valprice").val(data.price);
+                    $("#valdelivery").val(data.delivery);
+                    $("#valtax").val(data.tax);
+                    $("#valdiskon").val(data.diskon);
+                }
+            })
+        }
+    }
+
+</script>
+    
+	<style type="text/css">
+		.ig-b- { display: inline-block; }
+		.ig-b- img { visibility: hidden; }
+		.ig-b-:hover { background-position: 0 -60px; } .ig-b-:active { background-position: 0 -120px; }
+		.ig-b-24 { width: 24px; height: 24px; background: url(//badges.instagram.com/static/images/ig-badge-sprite-24.png) no-repeat 0 0; }
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+		.ig-b-24 { background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-24@2x.png); background-size: 60px 178px; } }
+	</style>
+	<script src="<%:Url.Content("~/Content/_design/js/main.js") %>"></script>
+</head>
+
+
+<body>
+
+	<!--[if lt IE 7]>
+		<p class="chrome-frame">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+	<![endif]-->
+
+	<div class="outer-container">
+        <% string currentclass = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(); %>
+		<% if (currentclass.ToLower() == "home")
+        {%>
+		<img class="img-bg" src="<%:Url.Content("~/Content/_design/images/bg-pizza.jpg")%>" alt="">
+		<% }
+        %>
+        <header role="banner">
+			<div class="container clearfix">
+				<div class="logo">
+						<a href="<%:Url.Content("~/home") %>"><img src="<%:Url.Content("~/Content/_design/images/logo.png") %>" alt="" height="135" width="327"></a>
+				</div> 
+				<div class="sos">
+					    <div class="social-links">
+                        <ul>
+	                        <li>
+		                        <div id="fb-root"></div>
+		                        <div class="fb-like" data-href="http://www.facebook.com/PHD500600" data-send="false" data-layout="button_count" data-width="100%" data-show-faces="false"></div>
+	                        </li>
+	                        <li>
+		                        <a href="https://twitter.com/PHD_500600" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" data-width="100%" data-lang="en">Follow @PHD_500600</a>
+	                        </li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</header>
+		<!-- header -->
+		<div class="main-content">
+			<nav class="nav-main" role="navigation">
+				<ul class="clearfix">
+                    <% menuHelper menuhelp = new menuHelper();
+                       IEnumerable<Sitemenu> Headers = menuhelp.getHeadermenu();
+                       foreach (var row in Headers)
+                       {
+                        %>
+                        <li class="<%:row.name %> <% if(currentclass == row.url) Response.Write("active");%>">
+						<a class="ir <% if(row.url == "checkarea")
+                        { %>
+                        <%:"fancybox-area fancybox.ajax" %>
+                        <%} %>" href="<%:Url.Content("~/"+row.url) %>"><span><%:row.name%></span></a>
+					</li>
+                        <%
+                       }
+                        %>
+				</ul>
+				<div class="login-user">
+                
+					<div class="login-user-image">
+                    <% string pp = new userHelper().GetProfPic(Page.User.Identity.Name);
+                       if (pp == null || pp == "")
+                       {
+                    %>
+						<img src="<%:Url.Content("~/Content/_design/images/img-login-user.jpg")%>" alt="">
+                    <%}
+                       else
+                       { %>
+
+                        <img src=" <%: Url.Content("~"+pp) %>" alt="" />
+                          <%} %>
+					</div>
+					<div class="login-user-welcome">
+                 
+						<!--<p>Welcome Mrs. Sista</p>-->
+                        <%
+                            if (Request.IsAuthenticated) {
+                        %>
+                                Welcome <b><%: new userHelper().GetName(Page.User.Identity.Name) %>!<br>
+                               [  <%: Html.ActionLink("Log Off", "LogOff", "Account") %> ]
+                        <%
+                            }
+                            else {
+                        %> <a href="<%:Url.Content("~/account/logon#target")%>">Log in</a> | <a href="<%:Url.Content("~/Home/Register#target")%>">Register</a>
+
+                        <%    }
+                        %>
+					</div>
+				</div>
+			</nav>
+            <div id="target" class="middle-content clearfix">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+           
+            </asp:ContentPlaceHolder>
+            <div class="content-right">
+            <form id="bon" action="<%:Url.Content("~/menu/checkout") %>" method="post">
+					<div class="content-right-top">
+						<p>
+                            <%  int price = 0;
+                                int diskon = 0;
+                                int delivery = int.Parse(new DataService().FindBy(2).value);
+                                int tax = 0;
+                                int total = 0;
+                                if (Page.User.Identity.IsAuthenticated)
+                                {
+                                     User user = new userHelper().GetUser(Page.User.Identity.Name);
+                                     List<ICriterion> Crit = new List<ICriterion>();
+                                     
+                                     Crit.Add(Restrictions.Eq("is_main", 1));
+                                     Crit.Add(Restrictions.Eq("user.id", user.Id));
+                                     Address alamat = new AddressService().FindByCriteria(Crit);
+                                   %>
+                                    <%: alamat.street.outlet.name+" ("+alamat.street.outlet.kode+") "%>
+                                    <br>
+                                     <%= alamat.street.outlet.address %>    <input type="hidden" name="id-address" value="<%:alamat.Id %>"> 
+                                     <input id="id_outlet" type="hidden" name="id_outlet" value="<%:alamat.street.outlet.Id %>"> 
+                                   <% 
+                                         
+                                }%>
+
+						</p>
+					</div>
+					<div class="content-right-middle">
+						<div class="customer-data">
+							<ul>
+                                <% 
+                                    if (Page.User.Identity.IsAuthenticated)
+                                   {    User user = new userHelper().GetUser(Page.User.Identity.Name);
+                                        %>
+								<li>
+									Name : <%: user.nama%>
+								</li>
+								<li>
+									Telp : <%: user.telepon %>
+								</li>
+                                <% }%>
+							</ul>
+							
+						</div>
+						<div class="ordered-items">
+							<table>
+								<tbody>
+                                    <% if (Session["order"] != null)
+                                       {
+                                           Submenu submenu;
+                                           SubmenuService sbserv = new SubmenuService();
+                                           ArrayList order = (ArrayList)Session["order"];
+                                           string kodesubmenu;
+                                           int roworder = 0;
+                                           %>
+                                          
+                                    <% foreach (Temporder row in order)
+                                       {
+                                           
+                                           int upgpastaprice = 0; //change code upg pasta
+                                           
+                                           if (row.kode.Contains("+"))
+                                           {
+                                               string[] temp = row.kode.Split('+');
+                                               string[] temp2 = temp[1].Split('-');
+                                               
+                                               foreach(string mod in temp2)
+                                               {
+                                                   List<ICriterion> critUpgPast = new List<ICriterion>();
+                                                   critUpgPast.Add(Restrictions.Eq("kode", mod));
+                                                   Upgradepasta upg = new UpgradepastaService().FindByCriteria(critUpgPast);
+
+                                                   if (upg != null)
+                                                   {
+                                                       upgpastaprice = upg.price; 
+                                                       break;
+                                                   } //kena upg pasta
+                                               
+                                               }
+                                               
+                                               
+                                               kodesubmenu = temp[0];
+                                           }
+                                           else 
+                                           {
+                                               kodesubmenu = row.kode;
+                                           }
+                                           List<ICriterion> Crit = new List<ICriterion>();
+                                           Crit.Add(Restrictions.Eq("kode", kodesubmenu));
+                                           submenu = sbserv.FindByCriteria(Crit);                                                                                                                                 
+                                           price = price + ((submenu.price_gross + upgpastaprice)*row.quantity);
+                                           %>   
+									<tr>
+                                        <td> <input style="width:20px" id="<%:roworder %>" type="text" onkeyup="changeQty(this.id,this.value)" onkeypress='validateinput(event)'  value=<%:row.quantity %>>x</td>
+										<td style="width:160px"> <%: (submenu.menu.id_typemenu == 1 ? submenu.menu.nama + " - " : "") + submenu.name%></td>
+										<td><label id="lblprice<%:roworder %>"><%:String.Format("{0:0,0}", (submenu.price_gross + upgpastaprice) * row.quantity)%></label> <a href="<%:Url.Content("~/Menu/CancelOne/"+roworder/*Server.UrlEncode(row.kode)*/) %>"><img src="<%:Url.Content("~/Content/_design/images/cancel_btn.png") %>"/></a></td>
+									</tr>
+                                    <%  if (row.kode.Contains("+"))
+                                        {
+                                            Modifier md;
+                                            ModifierService mdserv = new ModifierService();
+                                            string[] temp = row.kode.Split('+');
+                                            string[] temp2 = temp[1].Split('-');
+                                            for (int count = 0; count < temp2.Length; count++)
+                                            {
+                                                List<ICriterion> CritMd = new List<ICriterion>();
+                                                CritMd.Add(Restrictions.Eq("kode", temp2[count]));
+                                                //CritMd.Add(Restrictions.Eq("menu.Id",submenu.menu.Id));
+                                                md = mdserv.FindByCriteria(CritMd);
+                                                string name = "";
+                                                if (md == null)
+                                                {
+                                                    Upgrade Upg = new Upgrade();
+                                                     List<ICriterion> CritUpg = new List<ICriterion>();
+                                                    CritUpg.Add(Restrictions.Eq("code", temp2[count]));
+                                                    Upg = new UpgradeService().FindByCriteria(CritUpg);
+
+                                                    if (Upg != null)
+                                                    {
+                                                        name = Upg.name;
+                                                    }
+                                                    else 
+                                                    {
+                                                        Box Box = new Box();
+                                                        List<ICriterion> CritBox = new List<ICriterion>();
+                                                        CritBox.Add(Restrictions.Eq("kode", temp2[count]));
+                                                        Box = new BoxService().FindByCriteria(CritBox);
+                                                        if (Box != null)
+                                                        {
+                                                            name = Box.nama;
+                                                        
+                                                        }
+                                                        
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    name = md.name;
+                                                }
+                                    %>
+                                            <%if (name != "")
+                                              { %>
+                                            <tr>
+										        <td></td>
+										        <td><%:name%></td>
+                                                <td></td>
+									        </tr>
+                                              <%} //end if
+                                            } //end for
+                                        } //end if
+                                        %>
+
+									<%roworder++;
+                                       }
+                                       } %>
+                                    <tr>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							
+						</div>
+                        <div class="payment-options">
+							<div class="money-payment">
+								<div class="title">
+									• Pilih Waktu Pengantaran
+								</div >
+                                <% string timenow = DateTime.Parse(DateTime.Now.ToString()).AddMinutes(30).ToShortTimeString();%>
+                                <% string datenow = DateTime.Parse(DateTime.Now.ToString()).ToString("MM/dd/yyyy");%>
+								     <input id="Date" name="delivery_date" type="text" style="width:100px" placeholder="" value="<%:datenow %>">
+                                     <input id="Time" name="delivery_time" type="text" style="width:50px" placeholder="" value="<%:timenow  %>">
+                            </div>
+                        </div>
+						<div class="payment-options">
+							<div class="money-payment">
+								<div class="title">
+									• Term of Payment
+								</div >
+                                <script type="text/javascript" language="javascript">
+                                    $('#Time').timepicker({ 'timeFormat': 'H:i', 'minTime': '<%:new DataService().FindBy(3).value %>',
+                                        'maxTime': '<%:new DataService().FindBy(4).value %>', 'step': '15'
+                                    });
+
+                                    function validateinput(evt) {
+                                        var theEvent = evt || window.event;
+                                        var key = theEvent.keyCode || theEvent.which;
+                                        if (key == 8) {
+
+                                        }
+                                        else {
+                                            key = String.fromCharCode(key);
+                                            var regex = /[0-9]|\./;
+                                            if (!regex.test(key)) {
+                                                theEvent.returnValue = false;
+                                                if (theEvent.preventDefault) theEvent.preventDefault();
+                                            }
+                                        }
+                  
+                                    }
+
+                                    function showpayment() {
+								               $('#online').hide();
+								               $('#pod').show();
+								           }
+
+								           function showonline() {
+								               $('#online').show();
+								               $('#pod').hide();
+								           }
+
+								           function showv(id) {
+
+								               changePayment(id);
+
+								               $('#child' + id).show();
+                                               a = id-1 ;
+                                               b = a+2;
+                                               for( i = 0 ;i <8;i++)
+                                               {
+                                                if(i!=id)
+                                                {
+								                    $('#child'+i).hide();
+                                                }
+                                               }
+                                                $('input[name=payment-child]').attr('checked',false);
+								           }
+
+								            function changePayment(id) 
+                                            {
+                                                    $.ajax({
+				                                                type : 'POST',
+				                                                dataType : 'json',
+				                                                cache : false,
+				                                                url : '<%:Url.Content("~/Menu/ChangePayment") %>',
+				                                                data : {
+				                                                    idpayment: id
+				                                                },
+				                                                    success : function(data){
+				                                                        $("#lbltotal").text(data.totaltext);
+				                                                        $("#lblprice").text(data.pricetext);
+				                                                        $("#lbldelivery").text(data.deliverytext);
+				                                                        $("#lbltax").text(data.taxtext);
+				                                                        $("#lbldiskon").text(data.diskontext);
+
+                                                                    $("#valtotal").val(data.total);
+                                                                    $("#valprice").val(data.price);
+                                                                    $("#valdelivery").val(data.delivery);
+                                                                    $("#valtax").val(data.tax);
+                                                                    $("#valdiskon").val(data.diskon);
+				                                                }
+			                                                })     
+  
+                                            }
+
+								           $(document).ready(function () {
+								               $('input:radio[name=payment-type]').click(function () {
+								                   if (this.value == 1) {
+								                       $('input:text[name=payment_value]').focus();
+								                   }
+								                   if (this.value == 5) {
+								                       $('input:text[name=diskon_value]').focus();
+								                   }
+								               });
+								           });                      
+                                    </script>
+								    <a class="greenbtn" onclick="showpayment()" >Payment on Delivery</a>
+                                    <a class="greenbtn" onclick="showonline()" >Online Payment</a>
+                                    <div id="pod" style="display:none">
+									<ul>
+                                        <% IEnumerable<Payment> payments = new menuHelper().getPaymenttype(0);
+                                          
+                                           foreach (var payment in payments)
+                                           {
+                                            %>
+										<li>
+                                            <%
+                                                IEnumerable<Payment> paymentchild = new menuHelper().getPaymentChildren(payment.Id);
+                                           %>
+
+											<input  name="payment-type" type="radio" <%:"onclick=showv(this.value)" %>  value="<%:payment.Id %>" <% //:payment.Id == 1?"checked='True'":"" %>><label for="#<%:payment.name %>"><%:payment.name %></label> 
+											<%if (payment.Id == 1)
+                                              {%>
+                                            <p>
+												Rp <input id="codvalue"  onkeypress='validateinput(event)' name="payment_value" type="text" placeholder="ketik jumlah uang">
+											</p>
+                                            <%} %>
+                                            <%if (payment.Id == 5)
+                                              {%>
+                                            <p>
+												Rp <input onkeyup="changeVoucherVal(this.value)" onkeypress='validateinput(event)' name="diskon_value" type="text" placeholder="ketik nilai voucher">
+											</p>
+                                            <%} %>
+                                                <div id="child<%:payment.Id %>" style="display:none;margin-left:50px">
+                                            <% if (paymentchild.Count() != 0)
+                                                { 
+                                            %>  <ul>
+                                                <% 
+                                                    foreach (var row in paymentchild)
+                                                    {
+                                                    %>
+                                                    <li>
+                                                    <input name="payment-child" type="radio" onclick="changePayment(this.value)" id="payment<%:payment.Id %>" value="<%:row.Id %>"><label for="#<%:row.name %>"><%:row.name %></label> 
+                                                    </li>
+                                                    <% } %>
+                                                </ul>
+                                               
+                                            <%  } %>
+                                             </div>
+										</li>
+                                            <% }%>
+										
+									</ul>
+                                    </div>
+								    <div id="online" style="display:none">
+									<ul>
+                                        <% IEnumerable<Payment> payments2 = new menuHelper().getPaymenttype(1);
+                                           foreach (var payment in payments2)
+                                           {
+                                            %>
+										<li>
+											<input name="payment-type" type="radio" <%:"onclick=showv(this.value)" %> value="<%:payment.Id %>"><label for="#<%:payment.name %>"><%:payment.name %></label> 
+										
+                                        <div id="child<%:payment.Id %>" style="display:none;margin-left:50px">
+                                        </div>
+                                        </li>
+                                            <% }%>
+										
+									</ul>
+                                    </div>
+							</div>
+						</div>
+						<div class="total-price">
+							<table class="price-calculation">
+								<tbody>
+									<tr>
+										<td>Subtotal</td>
+										<td><label id="lblprice"><%:String.Format("{0:0,0}", price!=0?price:0) %></label></span></td>
+									</tr>
+                                    <tr>
+										<td>Diskon</td>
+										<td><label id="lbldiskon"><%:String.Format("{0:0,0}", diskon) %></label></td>
+									</tr>
+                                    <tr>
+                                    <% delivery = price == 0 ? 0 : delivery; %>
+										<td>Delivery Fee</td>
+										<td><label id="lbldelivery"><%:String.Format("{0:0,0}", delivery) %></label></td>
+									</tr>				
+                                    <tr><%tax = price != 0 ? (((price - diskon)  + delivery) * (int.Parse(new DataService().FindBy(1).value))) / 100 : 0;  %>
+										<td>Restaurant Tax</td>
+										<td><label id="lbltax"><%:String.Format("{0:0,0}", tax)%></label></td>
+									</tr>
+								</tbody>
+							</table>
+							<table>
+								<tbody>
+									<tr>
+										<td>Total</td>
+										<td class="subtotal"><label id="lbltotal"><%:String.Format("{0:0,0}", price != 0 ? (price - diskon + delivery+ tax) : 0)%></label></td>
+                                        <input id="valprice" type="hidden" name="price" value="<%:price!=0?price:0 %>">
+                                        <input id="valdiskon" type="hidden" name="diskon" value="<%:price!=0?diskon:0 %>">
+                                        <input id="valdelivery" type="hidden" name="delivery" value="<%:price!=0?delivery:0 %>">
+                                        <input id="valtax" type="hidden" name="tax" value="<%:price!=0?tax:0 %>">
+                                        <input id="valtotal" type="hidden" name="total_price" value="<%:price!=0?(price-diskon+delivery+tax):0 %>">
+									</tr>
+								</tbody>
+							</table>
+							<i>(Harga setelah pajak)</i>
+                            
+							<div class="button-container">
+                            	<a class="greenbtn" href="<%:Url.Content("~/menu/cancelallorder") %>">Batal</a>
+								<a id="submitbtn" class="redbtn" onclick="checkBasket()" >Submit</a>
+							</div>
+						</div>
+					</div>
+					<div class="content-right-bottom">
+
+					</div>
+                    </form>
+				</div>
+           </div>
+            <% if (currentclass.ToLower() != "home")
+            {%>
+		    <div class="push"></div>
+		    <% }
+            %>
+		</div>
+		<footer role="contentinfo">
+			<div class="container clearfix">
+				<div class="slider-hot">
+					<div class="slider-hot-content">
+						  <% foreach (var row in menuhelp.getSlideImage())
+                           { %>
+						<a href="<%:Url.Content("~"+row.url) %>"><img src="<%:Url.Content("~"+row.image)%>" alt="" height="135" width="233"></a>
+						<%} %>
+					</div>
+					<div class="slider-hot-nav"></div>
+				</div>	
+				<div class="nav-footer">
+					<ul class="clearfix">
+                     <% 
+                       Headers = menuhelp.getFootermenu();
+                       foreach (var row in Headers)
+                       {
+                        %>
+                        <li>
+						<a class="<%:row.name %> ir" href="<%:Url.Content("~/"+row.url) %>"><span><%:row.name%></span></a>
+					    </li>
+                        <%
+                       }
+                        %>
+					</ul>
+					<p class="copyright">
+						<small>&copy; 2012 PT Sarimelati Kencana. All Rights Reserved.</small> 
+						<span>The Pizza Hut name, logos and related marks are trademarks of Yum! Brands, Inc. or it´s subsidiaries.Site by IT Department</span>
+                    </p>
+				</div>
+            </div>
+		</footer>		
+	</div>
+
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="js/libs/jquery-1.8.3.min.js"></script>-->
+
+    <div style="display:none">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+       <a id="notif1" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/1") %>"></a>
+       <a id="notif2" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/2") %>"></a>
+       <a id="notif3" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/3") %>"></a>
+       <a id="notif4" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/4") %>"></a>
+       <a id="notif5" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/5") %>"></a>
+       <a id="notif6" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/6") %>"></a>
+       <a id="notif7" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/7") %>"></a>
+        <a id="notif8" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Notifikasi/8") %>"></a>
+       <% if (Session["habis"] != null)
+          {%>
+
+              <script language="javascript" type="text/javascript">
+                  $(document).ready(function () {
+
+                      document.getElementById("notif7").click();
+                  });    
+
+            </script>
+          <%
+              Session["habis"] = null;
+              } %>
+    </div>
+
+
+</body>
+
+
+
+</html>
+

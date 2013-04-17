@@ -1,0 +1,228 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="PHD.MVC.Helper" %>
+<%@ Import Namespace="PHD.Session.Classes" %>
+<%@ Import Namespace="PHD.Service.ModelService" %>
+<%@ Import Namespace="NHibernate.Criterion" %>
+
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head runat="server">
+	<title>PHD - Ahlinya Delivery</title>
+    <link rel="icon" 
+      type="image/png" 
+      href="<%:Url.Content("~/Content/favicon/logo.png")%>" />
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="<%:Url.Content("~/Content/_design/css/main.css")%>">
+        <link rel="stylesheet" href="<%:Url.Content("~/Content/_design/css/movingboxes.css")%>">
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <script>window.jQuery || document.write('<script src="<%:Url.Content("~/Content/_design/js/libs/jquery-1.8.3.min.js") %>"><\/script>')</script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.cycle.all.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.easing.1.2.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.movingboxes.min.js") %>"></script>
+    <script type="text/javascript" src="<%:Url.Content("~/Content/_design/js/plugins/jquery-ui-1.9.2.custom.min.js") %>"></script>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChFWZLbOsjriJmq7sxU9JSWSduSdOGC6Q&sensor=true">
+    </script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.fancybox.pack.js") %>"></script>
+	<script src="<%:Url.Content("~/Content/_design/js/plugins/jquery.dd.js") %>"></script>
+    <script type="text/javascript" src="<%:Url.Content("~/Content/js/timepicker/jquery.timepicker.js") %>"></script>
+    <link rel="stylesheet" type="text/css" href="<%:Url.Content("~/Content/js/timepicker/jquery.timepicker.css")%>" />
+    <script type="text/javascript" src="<%:Url.Content("~/Content/js/timepicker/lib/base.js")%>"></script> 
+    <link rel="stylesheet" type="text/css" href="<%:Url.Content("~/Content/js/timepicker/lib/base.css")%>" /> 
+	
+    
+	<style type="text/css">
+		.ig-b- { display: inline-block; }
+		.ig-b- img { visibility: hidden; }
+		.ig-b-:hover { background-position: 0 -60px; } .ig-b-:active { background-position: 0 -120px; }
+		.ig-b-24 { width: 24px; height: 24px; background: url(//badges.instagram.com/static/images/ig-badge-sprite-24.png) no-repeat 0 0; }
+		@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+		.ig-b-24 { background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-24@2x.png); background-size: 60px 178px; } }
+	</style>
+	<script src="<%:Url.Content("~/Content/_design/js/main.js") %>"></script>
+</head>
+<body>
+
+	<!--[if lt IE 7]>
+		<p class="chrome-frame">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p>
+	<![endif]-->
+
+	<div class="outer-container" id="home">
+        <% string currentclass = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(); %>
+		<% if (currentclass.ToLower() == "home")
+        {%>
+        <% string background = new ImageService().FindBy(1).image; %>
+		<img class="img-bg" src="<%:Url.Content("~"+background)%>" alt="">
+		<% }
+        %>
+        <header role="banner">
+			<div class="container clearfix">
+				<div class="logo">
+					<h1>
+						<a href="<%:Url.Content("~/home") %>"><img src="<%:Url.Content("~/Content/_design/images/logo.png")%>" alt="" height="135" width="327"></a>
+					</h1>
+				</div> 
+				<div class="sos">
+					<div class="social-links">
+                        <ul>
+                            <!--
+	                        <li>	
+		                        <a href="http://instagram.com/widodopangestu?ref=badge" class="ig-b- ig-b-24"><img src="//badges.instagram.com/static/images/ig-badge-24.png" alt="Instagram" /></a>
+	                        </li>
+                            
+	                        <li>
+		                        <a href="http://www.youtube.com/user/widpangestu?feature=creators_cornier-%2F%2Fs.ytimg.com%2Fyt%2Fimg%2Fcreators_corner%2FYouTube%2Fyoutube_24x24.png"><img src="//s.ytimg.com/yt/img/creators_corner/YouTube/youtube_24x24.png" alt="Subscribe to me on YouTube"/></a><img src="//www.youtube-nocookie.com/gen_204?feature=creators_cornier-//s.ytimg.com/yt/img/creators_corner/YouTube/youtube_24x24.png" style="display: none"/>
+	                        </li>
+                            -->
+	                        <li>
+		                        <div id="fb-root"></div>
+		                        <div class="fb-like" data-href="http://www.facebook.com/PHD500600" data-send="false" data-layout="button_count" data-width="100%" data-show-faces="false"></div>
+	                        </li>
+	                        <li>
+		                        <a href="https://twitter.com/PHD_500600" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" data-width="100%" data-lang="en">Follow @PHD_500600</a>
+	                        </li>
+                        </ul>
+                    </div>
+				</div>
+			</div>
+		</header>
+		<!-- header -->
+
+		<div class="main-content">
+			<nav class="nav-main" role="navigation">
+				<ul class="clearfix">
+                    <% menuHelper menuhelp = new menuHelper();
+                       IEnumerable<Sitemenu> Headers = menuhelp.getHeadermenu();
+                       foreach (var row in Headers)
+                       {
+                        %>
+                        <li class="<%:row.name %> <% if(currentclass == row.url) Response.Write("active");%>
+                        ">
+						<a class="ir <% if(row.url == "checkarea")
+                        { %>
+                        <%:"fancybox-area fancybox.ajax" %>
+                        <%} %>
+                        " href="<%:Url.Content("~/"+row.url) %>"><span><%:row.name%></span></a>
+					</li>
+                        <%
+                       }
+                        %>
+				</ul>
+				<div class="login-user">
+                
+					<div class="login-user-image">
+                    <% string pp = new userHelper().GetProfPic(Page.User.Identity.Name);
+                       if (pp == null || pp=="")
+                       {
+                    %> 
+						<img src="<%:Url.Content("~/Content/_design/images/img-login-user.jpg")%>" alt="">
+                    <%}
+                       else
+                       { %>
+
+                        <img src=" <%: Url.Content("~"+pp) %>" alt="" />
+                          <%} %>
+					</div>
+					<div class="login-user-welcome">
+                                          
+
+						<!--<p>Welcome Mrs. Sista</p>-->
+                        <%
+                            if (Request.IsAuthenticated) {
+                        %>
+                                Welcome <b><%: new userHelper().GetName(Page.User.Identity.Name) %></br>!
+                               [  <%: Html.ActionLink("Log Off", "LogOff", "Account") %> ]
+                        <%
+                            }
+                            else {
+                        %> 
+                                <a href="<%:Url.Content("~/account/logon#target")%>">Log in</a> | <a href="<%:Url.Content("~/Home/Register#target")%>">Register</a>
+                        <%
+                            }
+                        %>
+					</div>
+				</div>
+			</nav>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        
+            </asp:ContentPlaceHolder>
+            <% if (currentclass.ToLower() != "home")
+            {%>
+		    <div class="push"></div>
+		    <% }
+            %>
+          
+		</div>
+		<footer role="contentinfo">
+			<div class="container clearfix">
+				<div class="slider-hot">
+					<div class="slider-hot-content">
+                        
+                        <% foreach (var row in menuhelp.getSlideImage())
+                           { %>
+
+						<a href="<%:Url.Content("~"+row.url) %>"><img src="<%:Url.Content("~"+row.image)%>" alt="" height="135" width="233"></a>
+						<%} %>
+					</div>
+					<div class="slider-hot-nav"></div>
+				</div>	
+				<div class="nav-footer">
+					<ul class="clearfix">
+						 <% 
+                       Headers = menuhelp.getFootermenu();
+                       foreach (var row in Headers)
+                       {
+                        %>
+                        <li>
+						<a class="<%:row.name %> ir" href="<%:Url.Content("~/"+row.url) %>"><span><%:row.name%></span></a>
+					    </li>
+                        <%
+                       }
+                        %>
+					</ul>
+                     
+					<p class="copyright">
+						<small>&copy; 2012 PT Sarimelati Kencana. All Rights Reserved.</small> 
+						<span>The Pizza Hut name, logos and related marks are trademarks of Yum! Brands, Inc. or it´s subsidiaries.Site by IT Department</span>
+                    </p>
+				</div>
+            </div>
+			</footer>
+			<!-- footer -->
+	</div>
+
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="js/libs/jquery-1.8.3.min.js"></script>-->
+	
+    <div style="display:none">
+   
+   <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+
+
+
+     <% if (Session["udahmasuk"] == null)
+     {%>
+      <a id="landing" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/Landing") %>">F.A.Q</a>
+
+     <%
+         Session["udahmasuk"] = true;
+         } %>
+
+             <% if (Session["barudaftar"] == "true")
+            {
+                Session.Abandon();%>
+                  <a id="registered" class="fancybox-valentine fancybox.ajax ir" href="<%:Url.Content("~/Home/RegisterOk") %>">F.A.Q</a>         
+            <%
+            }%>
+    </div>
+
+  
+</body>
+
+
+
+</html>

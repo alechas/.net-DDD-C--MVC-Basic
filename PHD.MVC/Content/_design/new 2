@@ -1,0 +1,27 @@
+use phd
+  select a.id_submenu
+	,b.name
+	,b.image
+	,count(a.id_submenu) as countsubmenu
+	from ordersubmenu a
+	left join submenu b on a.id_submenu = b.id
+	left join ordercust c on a.id_order = c.id
+	where id_user = 20
+	group by a.id_submenu, b.image, b.name
+	
+	use phd
+select a.id as id_submenu
+	,a.name
+	,a.price
+	,a.id_menu
+	,a.image
+	,a.text
+	,a.kode
+	,a.kode_web
+	,b.id_order
+
+from submenu a
+	left join ordersubmenu b on a.id = b.id_submenu
+	left join ordercust c on c.id = b.id_order
+
+where id_user = 20
