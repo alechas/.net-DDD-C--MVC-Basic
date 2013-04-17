@@ -139,13 +139,13 @@
     <Compile Include="Validation\ModelStateWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PHD.Infrastructure\PHD.Infrastructure.csproj">
+    <ProjectReference Include="..\PHD.Infrastructure\Infrastructure.csproj">
       <Project>{E559F828-A446-4822-BA36-4FDD583999A9}</Project>
-      <Name>PHD.Infrastructure</Name>
+      <Name>Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PHD.Session\PHD.Session.csproj">
+    <ProjectReference Include="..\PHD.Session\Session.csproj">
       <Project>{B477D2F0-33B6-4297-B764-26D9FC2D42B5}</Project>
-      <Name>PHD.Session</Name>
+      <Name>Session</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
