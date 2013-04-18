@@ -67,10 +67,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -86,13 +85,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\HibernateMembershipProvider.cs" />
     <Compile Include="Provider\HibernateRoleProvider.cs" />
-    <Compile Include="Views\Shared\PHD.Master.cs">
-      <DependentUpon>PHD.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\PHD.Master.designer.cs">
-      <DependentUpon>PHD.Master</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\autocomplete.css" />
@@ -1205,12 +1197,6 @@
     <Content Include="Upload\submenu\634982451693666175_05_capucino_jelly_145.png" />
     <Content Include="Upload\submenu\634982451806422624_08_pinkflirt_145.png" />
     <Content Include="Upload\submenu\634982451874856538_09_blush_145.png" />
-    <Content Include="Views\About\Career.aspx" />
-    <Content Include="Views\About\Index.aspx" />
-    <Content Include="Views\About\Map.aspx" />
-    <Content Include="Views\About\Outlet.aspx" />
-    <Content Include="Views\About\QuickApply.aspx" />
-    <Content Include="Views\About\Survey.aspx" />
     <Content Include="Views\Home\Landing.aspx" />
     <Content Include="Views\Home\Login.aspx" />
     <Content Include="Views\Home\Notifikasi.aspx" />
@@ -1219,8 +1205,6 @@
     <Content Include="Views\Home\RegisterSuccess.aspx" />
     <Content Include="Views\Home\SelectAddress.aspx" />
     <Content Include="Views\Home\test.aspx" />
-    <Content Include="Views\Test\Index.aspx" />
-    <Content Include="Views\Test\Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1290,9 +1274,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\PHD.Master" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Content\font\HelveticaNeueLTStd-Bd.otf" />
     <None Include="Content\font\HelveticaNeueLTStd-BdCnO.otf" />
     <None Include="Content\font\HelveticaNeueLTStd-BlkCnO.otf" />
@@ -1302,13 +1283,11 @@
     <None Include="Content\font\HelveticaNeueLTStd-MdCn.otf" />
     <None Include="Content\font\HelveticaNeueLTStd-UltLtEx.otf" />
     <None Include="Content\font\HelveticaNeueLTStd-XBlkCn.otf" />
-    <Content Include="Views\Shared\PHD2.Master" />
     <Content Include="Views\Shared\RegLog.Master" />
     <None Include="Content\js\timepicker\component.json" />
     <None Include="Content\js\timepicker\jt.timepicker.jquery.json" />
     <None Include="Content\js\timepicker\package.json" />
     <None Include="Content\js\timepicker\README.md" />
-    <Content Include="Views\Shared\PHD3.Master" />
     <None Include="Content\_design\fonts\blunter.eot" />
     <None Include="Content\_design\fonts\blunter.ttf" />
     <None Include="Content\_design\fonts\blunter.woff" />

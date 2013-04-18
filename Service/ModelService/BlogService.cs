@@ -8,10 +8,10 @@ using PHD.Service.Validation;
 
 namespace PHD.Service.ModelService
 {
-    public class DataService : AbstractService<Data, int>
+    public class BlogService : AbstractService<Blog, int>
     {
         private IValidationDictionary _validationDictionary;
-        public bool ValidateData(Data DataToValidate)
+        public bool ValidateBlog(Blog BlogToValidate)
         {
             return _validationDictionary.IsValid;
         }

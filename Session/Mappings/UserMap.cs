@@ -14,36 +14,11 @@ namespace PHD.Session.Mappings
 
             Id(x => x.Id).Column("id");
             Map(x => x.username).Unique();
-            Map(x => x.profpic).Nullable();
-            Map(x => x.password).Not.Nullable();
-            Map(x => x.nama).Not.Nullable();
-            Map(x => x.hp).Nullable();
-            Map(x => x.telepon).Nullable();
            
-            Map(x => x.email).Unique();
-            Map(x => x.status).Nullable();
+            Map(x => x.password).Not.Nullable();
+            Map(x => x.name).Not.Nullable();
 
-            Map(x => x.tempat_lahir).Nullable();
-            Map(x => x.jenis_kelamin).Nullable();
-
-            // Map(x => x.profesi).Nullable();
-         
-
-            //Map(x => x.hobi).Nullable();
-
-
-
-            Map(x => x.fav_hangout).Nullable();
-            Map(x => x.fav_makanan).Nullable();
-            Map(x => x.fav_lokasi).Nullable();
-            Map(x => x.fav_brands).Nullable();
-            Map(x => x.tanggal_lahir).Nullable();
-            Map(x => x.register_date).Nullable();
-            Map(x => x.point).Nullable();
-
-            Map(x => x.first_time_logged).Nullable();
-
-            References<Role>(x => x.role).Column("id_role");
+            References<Role>(x => x.Role).Column("id_role");
         }
     }
 }

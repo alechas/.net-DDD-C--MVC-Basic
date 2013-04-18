@@ -53,7 +53,7 @@ namespace PHD.MVC.Controllers
                 string username;
                 if(user!=null)
                 {
-                    username = user.email;
+                    username = user.username;
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace PHD.MVC.Controllers
                     }
                     else
                     {
-                        if (user.role.name != "admin")
+                        if (user.Role.name != "admin")
                             return RedirectToAction("selectaddress", "Home");
                         else
                             return RedirectToAction("Index", "AdminUser");

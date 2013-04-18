@@ -54,13 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Classes\Data\Data.cs" />
+    <Compile Include="Classes\Blog\Blog.cs" />
+    <Compile Include="Classes\Comment\Comment.cs" />
     <Compile Include="Classes\Role\Role.cs" />
     <Compile Include="Classes\User\User.cs" />
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\EntityBaseMap.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
-    <Compile Include="Mappings\DataMap.cs" />
+    <Compile Include="Mappings\BlogMap.cs" />
     <Compile Include="Mappings\RoleMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

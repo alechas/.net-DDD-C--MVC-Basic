@@ -56,7 +56,8 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractService.cs" />
     <Compile Include="Class1.cs" />
-    <Compile Include="ModelService\DataService.cs" />
+    <Compile Include="ModelService\BlogService.cs" />
+    <Compile Include="ModelService\CommentService.cs" />
     <Compile Include="ModelService\RoleService.cs">
       <SubType>Code</SubType>
     </Compile>

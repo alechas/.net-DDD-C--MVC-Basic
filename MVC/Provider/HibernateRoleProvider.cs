@@ -104,7 +104,7 @@ namespace PHD.MVC.Provider
             //_User.FindByCriteria
             User Users = _User.FindByCriteria(Crit);
             string[] names = new string[1];
-            names[1] = Users.role.name;
+            names[1] = Users.Role.name;
             return names;
         }
 
@@ -157,7 +157,7 @@ namespace PHD.MVC.Provider
             foreach (User User in Users)
             {
                 foreach (string rolename in roleNames) {
-                    User.role = null;
+                    User.Role = null;
                     User.Save();
                 }
                
