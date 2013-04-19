@@ -7,15 +7,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using PHD.MVC.Models;
-using PHD.MVC.Helper;
-using PHD.Session.Classes;
-using PHD.Service.ModelService;
+using MVC.Models;
+using MVC.Helper;
+using Session.Classes;
+using Service.ModelService;
 using NHibernate.Criterion;
 using System.Collections;
 using System.Globalization;
 
-namespace PHD.MVC.Controllers
+namespace MVC.Controllers
 {
     public class HomeController : Controller
     {

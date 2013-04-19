@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace PHD.Infrastructure.Utils
+namespace Infrastructure.Utils
 {
     public class HttpSessionContainer<IT> : ISessionStorageContainer<IT>
     {

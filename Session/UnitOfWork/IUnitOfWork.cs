@@ -1,6 +1,6 @@
-﻿using PHD.Session.Domain;
+﻿using Session.Domain;
 
-namespace PHD.Session.UnitOfWork
+namespace Session.UnitOfWork
 {
     public interface IUnitOfWork
     {

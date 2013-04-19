@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace PHD.Service
+namespace Service
 {
     public class Class1
     {

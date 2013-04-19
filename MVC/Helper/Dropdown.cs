@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NHibernate.Criterion;
-using PHD.Service.ModelService;
-using PHD.Session.Classes;
+using Service.ModelService;
+using Session.Classes;
 
-namespace PHD.MVC.Helper
+namespace MVC.Helper
 {
     public class Dropdown
     {

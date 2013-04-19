@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
-using PHD.Session.Classes;
+using Session.Classes;
 
-namespace PHD.Session.Mappings
+namespace Session.Mappings
 {
     public class RoleMap : ClassMap<Role>
     {

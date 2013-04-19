@@ -7,13 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using PHD.MVC.Models;
-using PHD.MVC.Helper;
-using PHD.Session.Classes;
-using PHD.Service.ModelService;
+using MVC.Models;
+using MVC.Helper;
+using Session.Classes;
+using Service.ModelService;
 using NHibernate.Criterion;
 using System.Collections;
-namespace PHD.MVC.Controllers
+namespace MVC.Controllers
 {
     public class AccountController : Controller
     {
@@ -44,20 +44,13 @@ namespace PHD.MVC.Controllers
             if (ModelState.IsValid)
             {
                 List<ICriterion> Crit = new List<ICriterion>();
-                Crit.Add(Restrictions.Eq("email", model.UserName));
-                Crit.Add(Restrictions.Eq("status", 1));
-                Crit.Add(Restrictions.Eq("role.id", 3));
+                Crit.Add(Restrictions.Eq("username", model.UserName));
                 User user = new UserService().FindByCriteria(Crit);
+                string username = string.Empty;
 
-
-                string username;
-                if(user!=null)
+                if (user != null)
                 {
                     username = user.username;
-                }
-                else
-                {
-                    username = model.UserName;
                 }
 
                 if (MembershipService.ValidateUser(username, model.Password))
@@ -70,10 +63,7 @@ namespace PHD.MVC.Controllers
                     }
                     else
                     {
-                        if (user.Role.name != "admin")
-                            return RedirectToAction("selectaddress", "Home");
-                        else
-                            return RedirectToAction("Index", "AdminUser");
+                       return RedirectToAction("Index", "Home");
                     }
                 }
                 else

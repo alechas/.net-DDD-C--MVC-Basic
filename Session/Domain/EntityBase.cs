@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using NHibernate;
-using PHD.Session.SessionStorage;
+using Session.SessionStorage;
 using NHibernate.Criterion;
-namespace PHD.Session.Domain
+namespace Session.Domain
 {
     public abstract class EntityBase<TId>
     {

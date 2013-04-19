@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Xml.Serialization;
 
-namespace PHD.MVC.Helper
+namespace MVC.Helper
 {
     public class XmlResultHelper : ActionResult
     {

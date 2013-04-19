@@ -62,6 +62,7 @@
     <Compile Include="Domain\EntityBaseMap.cs" />
     <Compile Include="Domain\IAggregateRoot.cs" />
     <Compile Include="Mappings\BlogMap.cs" />
+    <Compile Include="Mappings\CommentMap.cs" />
     <Compile Include="Mappings\RoleMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

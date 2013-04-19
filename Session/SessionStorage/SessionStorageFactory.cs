@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace PHD.Session.SessionStorage
+namespace Session.SessionStorage
 {
     public static class SessionStorageFactory
     {

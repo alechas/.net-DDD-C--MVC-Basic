@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using PHD.Service.Abstract;
-using PHD.Session.Classes;
-using PHD.Service.Validation;
+using Service.Abstract;
+using Session.Classes;
+using Service.Validation;
 using System.Web.Mvc;
 using System.Web;
 
 using System.IO;
 
-namespace PHD.Service.ModelService
+namespace Service.ModelService
 {
     public class UserService : AbstractService<User, int>
     {

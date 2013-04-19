@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using NHibernate.Criterion;
 using NHibernate;
-using PHD.Session.SessionStorage;
-using PHD.Session.Domain;
+using Session.SessionStorage;
+using Session.Domain;
 
-namespace PHD.Service.Abstract
+namespace Service.Abstract
 {
     public abstract class AbstractService<T, TEntityKey> where T : IAggregateRoot
     {

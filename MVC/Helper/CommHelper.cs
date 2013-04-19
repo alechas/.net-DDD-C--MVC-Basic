@@ -8,7 +8,7 @@ using System.Configuration;
 using System.Text;
 using System.Xml;
 
-namespace PHD.MVC.Helper
+namespace MVC.Helper
 {
     public class CommHelper
     {

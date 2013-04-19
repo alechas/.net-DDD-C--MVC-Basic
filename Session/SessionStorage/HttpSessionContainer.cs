@@ -1,7 +1,7 @@
 ﻿using NHibernate;
 using System.Web;
 
-namespace PHD.Session.SessionStorage
+namespace Session.SessionStorage
 {
     public class HttpSessionContainer : ISessionStorageContainer
     {

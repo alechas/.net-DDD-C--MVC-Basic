@@ -8,13 +8,13 @@ using FluentNHibernate;
 using FluentNHibernate.Cfg;
 using System.Reflection;
 using System.Configuration;
-using PHD.Session.Domain;
+using Session.Domain;
 using FluentNHibernate.Automapping;
-using PHD.Session.Mappings;
-//using PHD.Session.Mappings;
+using Session.Mappings;
 
 
-namespace PHD.Session.SessionStorage
+
+namespace Session.SessionStorage
 {
     public sealed class SessionFactory
     {

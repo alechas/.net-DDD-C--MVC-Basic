@@ -1,6 +1,6 @@
 ﻿
 
-namespace PHD.Infrastructure.Utils
+namespace Infrastructure.Utils
 {
     public interface ISessionStorageContainer<IT>
     {

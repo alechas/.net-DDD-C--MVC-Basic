@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PHD.MVC.Helper
+namespace MVC.Helper
 {
     public class StringHelper
     {

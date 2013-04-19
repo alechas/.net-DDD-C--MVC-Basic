@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/RegLog.Master" Inherits="System.Web.Mvc.ViewPage<PHD.MVC.Models.LogOnModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<MVC.Models.LogOnModel>" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
     PHD
@@ -25,7 +25,6 @@
                     <%: Html.ValidationMessageFor(m => m.UserName) %>
                 </div>
                 
-                </div>
 	        	<div class="control-group">
 			        <label class="control-label" for="">Password</label>
                     <%: Html.PasswordFor(m => m.Password) %>

@@ -10,11 +10,11 @@ using NHibernate.Criterion;
 using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
-using PHD.Service.Validation;
-using PHD.Service.ModelService;
-using PHD.Session.Classes;
+using Service.Validation;
+using Service.ModelService;
+using Session.Classes;
 
-namespace PHD.MVC.Provider
+namespace MVC.Provider
 {
     public class HibernateMembershipProvider :MembershipProvider
     {
@@ -236,22 +236,17 @@ namespace PHD.MVC.Provider
         {
            // int total;
             List<ICriterion> Crit = new List<ICriterion>();
-            Crit.Add(Restrictions.Eq("email", username));
-            Crit.Add(Restrictions.Eq("status", 1));
-            Crit.Add(Restrictions.Eq("role.id", 3));
+            Crit.Add(Restrictions.Eq("username", username));
             try
             {
                 User Users = _User.FindByCriteria(Crit);
                 using (MD5 hash = MD5.Create())
                 {
-                    //string pass = GetMd5Hash(hash, password);
-                    //if (Users.password.ToLower() == pass)
-                    if (Users.password == password)
+                    string pass = GetMd5Hash(hash, password);
+                    if (Users.password.ToLower() == pass)
                     {
-
                         return true;
                     }
-
                 }
                 return false;
             }

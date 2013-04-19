@@ -5,7 +5,7 @@ using System.Web;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PHD.MVC.Helper
+namespace MVC.Helper
 {
     public class md5helper
     {

@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/RegLog.Master" Inherits="System.Web.Mvc.ViewPage<PHD.Session.Classes.User>" %>
-<%@ Import Namespace="PHD.MVC.Helper" %>
-<%@ import Namespace="PHD.Session.Classes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/RegLog.Master" Inherits="System.Web.Mvc.ViewPage<Session.Classes.User>" %>
+<%@ Import Namespace="MVC.Helper" %>
+<%@ import Namespace="Session.Classes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     PHD
 </asp:Content>

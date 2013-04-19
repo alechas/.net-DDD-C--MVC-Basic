@@ -1,6 +1,6 @@
 ﻿using NHibernate;
 
-namespace PHD.Session.SessionStorage
+namespace Session.SessionStorage
 {
     public interface ISessionStorageContainer
     {

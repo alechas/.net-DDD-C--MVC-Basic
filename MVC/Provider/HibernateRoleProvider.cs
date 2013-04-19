@@ -10,11 +10,11 @@ using NHibernate.Criterion;
 using System.Web.Security;
 using System.Security.Cryptography;
 using System.Text;
-using PHD.Service.Validation;
-using PHD.Service.ModelService;
-using PHD.Session.Classes;
+using Service.Validation;
+using Service.ModelService;
+using Session.Classes;
 
-namespace PHD.MVC.Provider
+namespace MVC.Provider
 {
     public class HibernateRoleProvider : RoleProvider
     {
@@ -59,7 +59,7 @@ namespace PHD.MVC.Provider
             {
                 Role.Delete();
             }
-            catch (Exception e) {
+            catch{
                 return false;
             }
             return true;
@@ -69,7 +69,7 @@ namespace PHD.MVC.Provider
         {
             List<ICriterion> Crit = new List<ICriterion>();
             Crit.Add(Restrictions.Eq("name", roleName));
-            int total;
+
             Role Role = _Role.FindByCriteria(Crit);
             IEnumerable<User> Users = Role.users;
             string[] names=new string[Users.Count()];
@@ -100,7 +100,7 @@ namespace PHD.MVC.Provider
         {
             List<ICriterion> Crit = new List<ICriterion>();
             Crit.Add(Restrictions.Eq("name", username));
-            int total;
+
             //_User.FindByCriteria
             User Users = _User.FindByCriteria(Crit);
             string[] names = new string[1];
@@ -112,7 +112,7 @@ namespace PHD.MVC.Provider
         {
             List<ICriterion> Crit = new List<ICriterion>();
             Crit.Add(Restrictions.Eq("name", roleName));
-            int total;
+
             Role Role = _Role.FindByCriteria(Crit);
             IEnumerable<User> Users = Role.users;
             string[] names = new string[Users.Count()];
@@ -130,7 +130,7 @@ namespace PHD.MVC.Provider
         {
             List<ICriterion> Crit = new List<ICriterion>();
             Crit.Add(Restrictions.Eq("name", roleName));
-            int total;
+
             Role Role = _Role.FindByCriteria(Crit);
             
             
@@ -168,7 +168,7 @@ namespace PHD.MVC.Provider
         {
             List<ICriterion> Crit = new List<ICriterion>();
             Crit.Add(Restrictions.Eq("name", roleName));
-            int total;
+
             Role Role = _Role.FindByCriteria(Crit);
             if (Role != null)
             {

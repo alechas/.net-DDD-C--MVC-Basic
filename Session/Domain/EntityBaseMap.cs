@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using FluentNHibernate.Mapping;
 
-namespace PHD.Session.Domain
+namespace Session.Domain
 {
     public class EntityBaseMap : ClassMap<EntityBase<int>>
     {

@@ -10,7 +10,7 @@ using System.Configuration;
 using System.Net.Configuration;
 using System.Web;
 
-namespace PHD.Infrastructure.Helper
+namespace Infrastructure.Helper
 {
     public class SMTP_Email {
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using PHD.Session.Domain;
+using Session.Domain;
 
-namespace PHD.Session.Classes
+namespace Session.Classes
 {
     public class User : EntityBase<int>, IAggregateRoot
     {

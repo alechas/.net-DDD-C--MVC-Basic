@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Linq.Expressions;
 
-namespace PHD.Infrastructure.Helper
+namespace Infrastructure.Helper
 {
     public static class LinqHelper
     {
